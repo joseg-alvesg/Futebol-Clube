@@ -14,6 +14,9 @@ export default class UserController {
   public getRole = async (req: Request, res: Response) => {
     const { email } = req.body.user;
     const response = await this.userService.getRole(email);
+    if (response.status !== 'SUCCESSFUL') {
+      return res.status(mapStatusHTTP(response.status)).json(response.data);
+    }
     return res.status(mapStatusHTTP(response.status)).json({ role: response.data });
   };
 }
