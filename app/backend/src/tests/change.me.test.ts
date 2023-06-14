@@ -39,7 +39,27 @@ describe('Seu teste', () => {
   //   expect(...)
   // });
 
-  it('Seu sub-teste', () => {
-    expect(false).to.be.eq(true);
+  it('integration of route teams', async () => {
+    const chaiHttpResponse = await chai
+      .request(app)
+      .get('/teams');
+    
+    expect(chaiHttpResponse.status).to.be.equal(200);
+    expect(chaiHttpResponse.body).to.be.an('array');
+
+    const chaiHttpResponse2 = await chai
+      .request(app)
+      .get('/teams/1');
+    
+    expect(chaiHttpResponse2.status).to.be.equal(200);
+    expect(chaiHttpResponse2.body).to.be.an('object');
+
+    const chaiHttpResponse3 = await chai
+      .request(app)
+      .get('/teams/999');
+
+    expect(chaiHttpResponse3.status).to.be.equal(404);
+    expect(chaiHttpResponse3.body).to.deep.equal({message: 'Team not found'});
   });
+
 });
