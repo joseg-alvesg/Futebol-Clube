@@ -5,8 +5,8 @@ export default class UserController {
   constructor(private userService: UserService = new UserService()) {}
 
   public login = async (req: Request, res: Response) => {
-    const { email } = req.body;
-    const response = await this.userService.loginEmail(email);
-    return res.status(200).json(response);
+    const { email, password } = req.body;
+    const response = await this.userService.loginEmail({ email, password });
+    return res.status(200).json({ token: response.data });
   };
 }
