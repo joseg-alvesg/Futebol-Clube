@@ -116,4 +116,50 @@ describe("Seu teste", () => {
       "Invalid email or password"
     );
   });
+
+  it("integration of route login/role", async function () {
+    const chaiHttpResponse = await chai.request(app).post("/login").send({
+      email: "admin@admin.com",
+      password: "secret_admin",
+    });
+
+    expect(chaiHttpResponse.status).to.be.equal(200);
+    expect(chaiHttpResponse.body).to.be.an("object");
+    expect(chaiHttpResponse.body).to.have.property("token");
+
+    const chaiHttpResponse2 = await chai
+      .request(app)
+      .get("/login/role")
+      .set("Authorization", `${chaiHttpResponse.body.token}`)
+      .send();
+
+    expect(chaiHttpResponse2.status).to.be.equal(200);
+    expect(chaiHttpResponse2.body).to.be.an("object");
+    expect(chaiHttpResponse2.body).to.have.property("role");
+    expect(chaiHttpResponse2.body.role).to.be.equal("admin");
+
+    const chaiHttpResponse3 = await chai
+      .request(app)
+      .get("/login/role")
+      .set("Authorization", ``)
+      .send();
+
+    expect(chaiHttpResponse3.status).to.be.equal(401);
+    expect(chaiHttpResponse3.body).to.be.an("object");
+    expect(chaiHttpResponse3.body).to.have.property("message");
+    expect(chaiHttpResponse3.body.message).to.be.equal("Token not found");
+
+    const chaiHttpResponse4 = await chai
+      .request(app)
+      .get("/login/role")
+      .set("Authorization", `token`)
+      .send();
+
+    expect(chaiHttpResponse4.status).to.be.equal(401);
+    expect(chaiHttpResponse4.body).to.be.an("object");
+    expect(chaiHttpResponse4.body).to.have.property("message");
+    expect(chaiHttpResponse4.body.message).to.be.equal(
+      "Token must be a valid token"
+    );
+  });
 });
