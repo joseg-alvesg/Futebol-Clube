@@ -10,7 +10,7 @@ module.exports = {
         primaryKey: true,
         type: DataTypes.INTEGER,
       },
-      userName: {
+      username: {
         allowNull: false,
         type: DataTypes.STRING,
         field: "username",
