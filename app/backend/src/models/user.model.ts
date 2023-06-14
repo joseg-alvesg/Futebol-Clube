@@ -9,4 +9,10 @@ export default class UserModel implements userModel {
     if (!user) return null;
     return user;
   }
+
+  public async getRole(email: string): Promise<string | null> {
+    const user = await this.model.findOne({ where: { email } });
+    if (!user) return null;
+    return user.role;
+  }
 }
