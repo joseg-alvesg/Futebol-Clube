@@ -1,0 +1,9 @@
+const UNAUTHORIZED = 'UNAUTHORIZED';
+const INVALID_EMAIL_OR_PASSWORD = 'Invalid email or password';
+const SUCCESSFUL = 'SUCCESSFUL';
+
+export {
+  UNAUTHORIZED,
+  INVALID_EMAIL_OR_PASSWORD,
+  SUCCESSFUL,
+};

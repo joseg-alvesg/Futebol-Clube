@@ -16,7 +16,7 @@ export default class Token {
     try {
       return verify(token, this.secret);
     } catch (error) {
-      return 'Token must be a valid token';
+      throw new Error('Token must be a valid token');
     }
   }
 }
