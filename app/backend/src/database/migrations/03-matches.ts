@@ -39,7 +39,7 @@ module.exports = {
         field: "away_team_goals",
       },
       inProgress: {
-        allowNull: false,
+        defaultValue: true,
         type: DataTypes.BOOLEAN,
         field: "in_progress",
       },
