@@ -1,4 +1,4 @@
-import MatchModelInterface from '../Interfaces/matches.interface';
+import MatchModelInterface, { MatchBasic } from '../Interfaces/matches.interface';
 import MatchModelInit from '../database/models/MatchModelInit';
 import TeamModel from '../database/models/TeamModel';
 
@@ -26,5 +26,19 @@ export default class MatchModel implements MatchModelInterface {
       ],
     });
     return matches;
+  }
+
+  public async fisnishMatch(id: number) {
+    await this.model.update({ inProgress: false }, { where: { id } });
+  }
+
+  public async updateGoals(
+    id: number,
+    { homeTeamGoals, awayTeamGoals }: MatchBasic,
+  ) {
+    await this.model.update(
+      { homeTeamGoals, awayTeamGoals },
+      { where: { id } },
+    );
   }
 }
