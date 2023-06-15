@@ -15,7 +15,7 @@ export default class MatchService {
   }
 
   public async finishMatch(id: number) {
-    await this.matchModel.fisnishMatch(id);
+    await this.matchModel.finishMatch(id);
     return { status: 'SUCCESSFUL', data: { message: 'Finished' } };
   }
 

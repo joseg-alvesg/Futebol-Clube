@@ -28,7 +28,7 @@ export default class MatchModel implements MatchModelInterface {
     return matches;
   }
 
-  public async fisnishMatch(id: number) {
+  public async finishMatch(id: number) {
     await this.model.update({ inProgress: false }, { where: { id } });
   }
 

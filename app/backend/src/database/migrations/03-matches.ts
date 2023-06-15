@@ -1,9 +1,9 @@
 import { Model, QueryInterface, DataTypes } from "sequelize";
-import { Match } from "../../Interfaces/matches.interface";
+import { MatchBasic } from '../../Interfaces/matches.interface'
 
 module.exports = {
   up: async (queryInterface: QueryInterface) => {
-    await queryInterface.createTable<Model<Match>>("matches", {
+    await queryInterface.createTable<Model<MatchBasic>>("matches", {
       id: {
         allowNull: false,
         autoIncrement: true,
