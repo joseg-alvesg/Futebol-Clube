@@ -13,4 +13,14 @@ export default class MatchService {
       : await this.matchModel.getAll();
     return { status: 'SUCCESSFUL', data: matches };
   }
+
+  public async finishMatch(id: number) {
+    await this.matchModel.fisnishMatch(id);
+    return { status: 'SUCCESSFUL', data: { message: 'Finished' } };
+  }
+
+  public async updateGoals(id: number, goals: MatchGetAllInterface) {
+    await this.matchModel.updateGoals(id, goals);
+    return { status: 'SUCCESSFUL', data: { message: 'Goals updated' } };
+  }
 }
