@@ -1,6 +1,6 @@
 import MatchModel from '../models/Matchs.model';
-import { ServiceResponse } from '../utils/serviceResponse';
-import { MatchGetAllInterface } from '../Interfaces/matches.interface';
+import { ServiceMessage, ServiceResponse } from '../utils/serviceResponse';
+import { MatchBasic, MatchGetAllInterface } from '../Interfaces/matches.interface';
 
 export default class MatchService {
   constructor(private matchModel: MatchModel = new MatchModel()) {}
@@ -14,13 +14,23 @@ export default class MatchService {
     return { status: 'SUCCESSFUL', data: matches };
   }
 
-  public async finishMatch(id: number) {
+  public async finishMatch(
+    id: number,
+  ): Promise<ServiceResponse<ServiceMessage>> {
     await this.matchModel.finishMatch(id);
     return { status: 'SUCCESSFUL', data: { message: 'Finished' } };
   }
 
-  public async updateGoals(id: number, goals: MatchGetAllInterface) {
+  public async updateGoals(
+    id: number,
+    goals: MatchGetAllInterface,
+  ): Promise<ServiceResponse<ServiceMessage>> {
     await this.matchModel.updateGoals(id, goals);
     return { status: 'SUCCESSFUL', data: { message: 'Goals updated' } };
+  }
+
+  public async createNewMatch(match: MatchGetAllInterface): Promise<ServiceResponse<MatchBasic>> {
+    const newMatch = await this.matchModel.createNewMatch(match);
+    return { status: 'CREATED', data: newMatch };
   }
 }
