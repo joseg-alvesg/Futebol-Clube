@@ -41,4 +41,9 @@ export default class MatchModel implements MatchModelInterface {
       { where: { id } },
     );
   }
+
+  public async createNewMatch(match: MatchBasic) {
+    const newMatch = await this.model.create(match);
+    return newMatch;
+  }
 }
