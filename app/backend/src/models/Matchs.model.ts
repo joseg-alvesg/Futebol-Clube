@@ -9,15 +9,20 @@ export default class MatchModel implements MatchModelInterface {
     const matches = await this.model.findAll({
       include: [
         {
-          model: TeamModel,
-          as: 'homeTeam',
-          attributes: ['teamName'],
-        },
+          model: TeamModel, as: 'homeTeam', attributes: ['teamName'] },
+        { model: TeamModel, as: 'awayTeam', attributes: ['teamName'] },
+      ],
+    });
+    return matches;
+  }
+
+  public async getAllInProgress(progress: string) {
+    const matches = await this.model.findAll({
+      where: { inProgress: progress === 'true' },
+      include: [
         {
-          model: TeamModel,
-          as: 'awayTeam',
-          attributes: ['teamName'],
-        },
+          model: TeamModel, as: 'homeTeam', attributes: ['teamName'] },
+        { model: TeamModel, as: 'awayTeam', attributes: ['teamName'] },
       ],
     });
     return matches;
