@@ -34,6 +34,16 @@ TeamModel.init({
   underscored: true,
 });
 
+TeamModel.hasMany(TeamModel, {
+  foreignKey: 'id',
+  as: 'homeTeam',
+});
+
+TeamModel.hasMany(TeamModel, {
+  foreignKey: 'id',
+  as: 'awayTeam',
+});
+
 /**
   * `Workaround` para aplicar as associations em TS:
   * Associations 1:N devem ficar em uma das instâncias de modelo
