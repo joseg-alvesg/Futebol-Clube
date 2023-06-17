@@ -1,5 +1,4 @@
 import { LeaderBoardInterface } from '../Interfaces/leaderBoard.interface';
-// import TeamModel from '../database/models/TeamModel';
 import MatchModelInit from '../database/models/MatchModelInit';
 import { homeTeamLeaderBoardQuery } from '../utils/queryConstants';
 
