@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import matchRouter from './matchs.router';
+import matchRouter from './match.router';
 import teamRouter from './team.router';
 import userRouter from './user.router';
 import leaderBoardRouter from './leaderBoard.router';

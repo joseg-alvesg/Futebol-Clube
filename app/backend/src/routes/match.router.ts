@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import tokenValidation from '../middlewares/token.validation';
-import MatchController from '../controllers/matchs.controller';
+import MatchController from '../controllers/match.controller';
 
 const matchRouter = Router();
 

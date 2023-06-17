@@ -1,4 +1,4 @@
-import MatchModel from '../models/Matchs.model';
+import MatchModel from '../models/match.model';
 import { ServiceMessage, ServiceResponse } from '../utils/serviceResponse';
 import { MatchBasic, MatchGetAllInterface } from '../Interfaces/matches.interface';
 import { SUCCESSFUL } from '../utils/constats';
