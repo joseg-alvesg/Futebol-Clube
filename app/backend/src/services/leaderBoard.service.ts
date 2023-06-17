@@ -9,4 +9,9 @@ export default class LeaderBoardService {
     const leaderBoard = await this.leaderBoardModel.getLeaderBoard();
     return { status: 'SUCCESSFUL', data: leaderBoard };
   }
+
+  public async getAwayTeamLeaderBoard(): Promise<ServiceResponse<LeaderBoardInterface[]>> {
+    const leaderBoard = await this.leaderBoardModel.getAwayTeamLeaderBoard();
+    return { status: 'SUCCESSFUL', data: leaderBoard };
+  }
 }
