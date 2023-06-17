@@ -8,6 +8,6 @@ export default class LeaderBoardController {
     console.log('leaderBoard.controller.ts');
     const leaderBoard = await this.leaderBoardService.getLeaderBoard();
     console.log(leaderBoard);
-    return res.status(200).json('string');
+    return res.status(200).json(leaderBoard);
   }
 }
