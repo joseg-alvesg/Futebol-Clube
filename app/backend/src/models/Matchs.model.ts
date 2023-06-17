@@ -1,4 +1,6 @@
-import MatchModelInterface, { MatchBasic } from '../Interfaces/matches.interface';
+import MatchModelInterface, {
+  MatchBasic,
+} from '../Interfaces/matches.interface';
 import MatchModelInit from '../database/models/MatchModelInit';
 import TeamModel from '../database/models/TeamModel';
 
@@ -9,7 +11,10 @@ export default class MatchModel implements MatchModelInterface {
     const matches = await this.model.findAll({
       include: [
         {
-          model: TeamModel, as: 'homeTeam', attributes: ['teamName'] },
+          model: TeamModel,
+          as: 'homeTeam',
+          attributes: ['teamName'],
+        },
         { model: TeamModel, as: 'awayTeam', attributes: ['teamName'] },
       ],
     });
@@ -21,8 +26,25 @@ export default class MatchModel implements MatchModelInterface {
       where: { inProgress: progress === 'true' },
       include: [
         {
-          model: TeamModel, as: 'homeTeam', attributes: ['teamName'] },
+          model: TeamModel,
+          as: 'homeTeam',
+          attributes: ['teamName'],
+        },
         { model: TeamModel, as: 'awayTeam', attributes: ['teamName'] },
+      ],
+    });
+    return matches;
+  }
+
+  public async getAllInProgressWithHome(progress: string, awayHome: string) {
+    const matches = await this.model.findAll({
+      where: { inProgress: progress === 'true' },
+      include: [
+        {
+          model: TeamModel,
+          as: awayHome === 'homeTeam' ? 'homeTeam' : 'awayTeam',
+          attributes: ['teamName'],
+        },
       ],
     });
     return matches;
