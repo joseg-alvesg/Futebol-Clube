@@ -6,7 +6,6 @@ import {
   CreationOptional,
 } from 'sequelize';
 import db from '.';
-// import OtherModel from './OtherModel';
 
 export default class TeamModel extends Model<InferAttributes<TeamModel>,
 InferCreationAttributes<TeamModel>> {
@@ -43,14 +42,3 @@ TeamModel.hasMany(TeamModel, {
   foreignKey: 'id',
   as: 'awayTeam',
 });
-
-/**
-  * `Workaround` para aplicar as associations em TS:
-  * Associations 1:N devem ficar em uma das instâncias de modelo
-  * */
-
-// OtherModel.belongsTo(TeamModel, { foreignKey: 'campoA', as: 'campoEstrangeiroA' });
-// OtherModel.belongsTo(TeamModel, { foreignKey: 'campoB', as: 'campoEstrangeiroB' });
-
-// TeamModel.hasMany(OtherModel, { foreignKey: 'campoC', as: 'campoEstrangeiroC' });
-// TeamModel.hasMany(OtherModel, { foreignKey: 'campoD', as: 'campoEstrangeiroD' });
