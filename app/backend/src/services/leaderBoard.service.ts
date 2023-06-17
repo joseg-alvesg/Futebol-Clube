@@ -1,10 +1,12 @@
 import LeaderBoardModel from '../models/leaderBoar.model';
 
 export default class LeaderBoardService {
-  constructor(private leaderModel: LeaderBoardModel = new LeaderBoardModel()) {}
+  constructor(private leaderBoardModel: LeaderBoardModel = new LeaderBoardModel()) {}
 
-  public async getLeaderBoard(): Promise<unknown> {
-    const leaderBoard = await this.leaderModel.getLeaderBoard();
+  public async getLeaderBoard() {
+    console.log('leaderBoard.service.ts');
+    const leaderBoard = await this.leaderBoardModel.getLeaderBoard();
+    console.log(leaderBoard);
     return leaderBoard;
   }
 }
