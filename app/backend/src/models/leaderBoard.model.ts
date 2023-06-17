@@ -6,6 +6,7 @@ import MatchModelInit from '../database/models/MatchModelInit';
 import {
   homeTeamLeaderBoardQuery,
   awayTeamLeaderBoardQuery,
+  leaderBoardQuery,
 } from '../utils/queryConstants';
 
 export default class LeaderBoardModel implements LeaderBoardModelInterface {
@@ -22,6 +23,14 @@ export default class LeaderBoardModel implements LeaderBoardModelInterface {
   public async getAwayTeamLeaderBoard() {
     const leaderBoard = await this.matchModel.sequelize?.query(
       awayTeamLeaderBoardQuery,
+      { type: 'SELECT' },
+    );
+    return leaderBoard as unknown as LeaderBoardInterface[];
+  }
+
+  public async getLeaderBoard() {
+    const leaderBoard = await this.matchModel.sequelize?.query(
+      leaderBoardQuery,
       { type: 'SELECT' },
     );
     return leaderBoard as unknown as LeaderBoardInterface[];
