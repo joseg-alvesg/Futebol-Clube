@@ -5,8 +5,8 @@ import LeaderBoardModel from '../models/leaderBoar.model';
 export default class LeaderBoardService {
   private leaderBoardModel = new LeaderBoardModel();
 
-  public async getLeaderBoard(): Promise<ServiceResponse<LeaderBoardInterface[]>> {
-    const leaderBoard = await this.leaderBoardModel.getLeaderBoard();
+  public async getHomeTeamLeaderBoard(): Promise<ServiceResponse<LeaderBoardInterface[]>> {
+    const leaderBoard = await this.leaderBoardModel.getHomeTeamLeaderBoard();
     return { status: 'SUCCESSFUL', data: leaderBoard };
   }
 

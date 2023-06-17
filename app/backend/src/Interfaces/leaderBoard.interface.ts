@@ -12,5 +12,6 @@ export interface LeaderBoardInterface {
 }
 
 export interface LeaderBoardModelInterface {
-  getLeaderBoard(): Promise<LeaderBoardInterface[]>;
+  getHomeTeamLeaderBoard(): Promise<LeaderBoardInterface[]>;
+  getAwayTeamLeaderBoard(): Promise<LeaderBoardInterface[]>;
 }
