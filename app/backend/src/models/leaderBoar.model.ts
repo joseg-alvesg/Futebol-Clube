@@ -1,4 +1,4 @@
-// import { leaderBoardInterface } from '../Interfaces/leaderBoard.interface';
+import { LeaderBoardInterface } from '../Interfaces/leaderBoard.interface';
 // import TeamModel from '../database/models/TeamModel';
 import MatchModelInit from '../database/models/MatchModelInit';
 
@@ -23,7 +23,7 @@ THEN 3 WHEN m.home_team_goals = m.away_team_goals THEN 1 ELSE 0 END) AS totalPoi
     SUM(CASE WHEN m.home_team_goals > m.away_team_goals THEN 1 ELSE 0 END) AS totalVictories,
     SUM(CASE WHEN m.home_team_goals = m.away_team_goals THEN 1 ELSE 0 END) AS totalDraws,
     SUM(CASE WHEN m.home_team_goals < m.away_team_goals THEN 1 ELSE 0 END) AS totalLosses,
-    SUM(m.home_team_goals) AS goalsFavor, SUM(m.home_team_goals) AS goalsOwn,
+    SUM(m.home_team_goals) AS goalsFavor, SUM(m.away_team_goals) AS goalsOwn,
     SUM(m.home_team_goals) - SUM(m.away_team_goals) AS goalsBalance,
     ROUND((SUM(CASE WHEN m.home_team_goals > m.away_team_goals THEN 3 
     WHEN m.home_team_goals = m.away_team_goals THEN 1 
@@ -39,20 +39,10 @@ export default class LeaderBoardModel {
 
   public async getLeaderBoard() {
     const results = await this.matchModel.sequelize?.query(query);
-    console.log(results);
-    return [
-      {
-        name: 'Flamengo',
-        totalPoints: 9,
-        totalGames: 3,
-        totalVictories: 3,
-        totalDraws: 0,
-        totalLosses: 0,
-        goalsFavor: 9,
-        goalsOwn: 0,
-        goalsBalance: 9,
-        efficiency: 100,
-      },
-    ];
+    // if (results) {
+    //   const leaderBoard: LeaderBoardInterface[] = results[0] as LeaderBoardInterface[];
+    //   return leaderBoard;
+    // }
+    return results?.[0]?.flat() ?? [];
   }
 }
