@@ -6,6 +6,7 @@ import {
   CreationOptional,
 } from 'sequelize';
 import db from '.';
+// import OtherModel from './OtherModel';
 
 class UserModelInit extends Model<InferAttributes<UserModelInit>,
 InferCreationAttributes<UserModelInit>> {
@@ -52,5 +53,16 @@ UserModelInit.init({
   modelName: 'users',
   timestamps: false,
 });
+
+/**
+  * `Workaround` para aplicar as associations em TS:
+  * Associations 1:N devem ficar em uma das instâncias de modelo
+  * */
+
+// OtherModel.belongsTo(UserModelInit, { foreignKey: 'campoA', as: 'campoEstrangeiroA' });
+// OtherModel.belongsTo(UserModelInit, { foreignKey: 'campoB', as: 'campoEstrangeiroB' });
+
+// UserModelInit.hasMany(OtherModel, { foreignKey: 'campoC', as: 'campoEstrangeiroC' });
+// UserModelInit.hasMany(OtherModel, { foreignKey: 'campoD', as: 'campoEstrangeiroD' });
 
 export default UserModelInit;
