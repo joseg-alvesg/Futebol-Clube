@@ -19,4 +19,7 @@ export interface MatchGetAllInterface extends MatchBasic {
 
 export default interface MatchModelInterface {
   getAll(): Promise<MatchGetAllInterface[]>;
+  getAllInProgress(progress: string): Promise<MatchGetAllInterface[]>;
+  finishMatch(id: number): Promise<void>;
+  createNewMatch(match: MatchBasic): Promise<MatchGetAllInterface>;
 }

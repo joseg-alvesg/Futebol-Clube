@@ -36,20 +36,6 @@ export default class MatchModel implements MatchModelInterface {
     return matches;
   }
 
-  public async getAllInProgressWithHome(progress: string, awayHome: string) {
-    const matches = await this.model.findAll({
-      where: { inProgress: progress === 'true' },
-      include: [
-        {
-          model: TeamModel,
-          as: awayHome === 'homeTeam' ? 'homeTeam' : 'awayTeam',
-          attributes: ['teamName'],
-        },
-      ],
-    });
-    return matches;
-  }
-
   public async finishMatch(id: number) {
     await this.model.update({ inProgress: false }, { where: { id } });
   }

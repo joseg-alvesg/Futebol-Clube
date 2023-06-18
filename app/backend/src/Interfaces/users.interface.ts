@@ -9,4 +9,5 @@ export interface User extends Identify {
 
 export interface userModel {
   loginEmail: (email: string) => Promise<User | null>;
+  getRole(email: string): Promise<string | null>;
 }
